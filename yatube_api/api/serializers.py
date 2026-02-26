@@ -4,6 +4,7 @@ from posts.models import Comment, Group, Post
 
 
 class PostSerializer(serializers.ModelSerializer):
+    # автор берётся из токена, не из тела запроса
     author = serializers.SlugRelatedField(
         slug_field='username',
         read_only=True
@@ -21,6 +22,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    # оба поля read_only — пользователь не может их подменить
     author = serializers.SlugRelatedField(
         slug_field='username',
         read_only=True
